@@ -1,8 +1,11 @@
 package com.micro.restfulwebservice.dto;
 
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.transaction.support.ResourceHolderSupport;
+
 import java.util.Date;
 
-public class User {
+public class User extends RepresentationModel<User> {
 
     private Integer id;
 

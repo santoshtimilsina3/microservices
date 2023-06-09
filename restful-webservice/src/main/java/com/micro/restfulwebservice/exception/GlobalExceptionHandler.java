@@ -1,5 +1,6 @@
 package com.micro.restfulwebservice.exception;
 
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -24,6 +25,11 @@ public class GlobalExceptionHandler extends
         GenericException exception = new GenericException(new Date(), ex.getMessage(), request.getDescription(false));
 
         return new ResponseEntity(exception, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(NoSuchMessageException.class)
+    public ResponseEntity handleNoSuchMessageException(Exception exception) {
+        return ResponseEntity.internalServerError().body(exception.getMessage());
     }
 
 }
